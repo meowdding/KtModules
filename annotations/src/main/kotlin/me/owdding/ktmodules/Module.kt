@@ -98,9 +98,6 @@ internal class ModuleProvider : SymbolProcessorProvider {
     override fun create(
         environment: SymbolProcessorEnvironment,
     ): SymbolProcessor {
-        environment.options.forEach { (k, v) ->
-            environment.logger.warn("$k -> $v")
-        }
         return Processor(
             environment.codeGenerator,
             environment.logger,
