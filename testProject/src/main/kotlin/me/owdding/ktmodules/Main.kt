@@ -2,6 +2,7 @@ package me.owdding.ktmodules
 
 import me.owdding.ktmodules.generated.TestProjectModules
 
+@Module
 object Main {
 
     var worked = false

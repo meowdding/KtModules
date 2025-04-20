@@ -63,7 +63,7 @@ internal class Processor(
                                     add("listOf(\n")
 
                                     validModules.forEach { module ->
-                                        add(module.qualifiedName!!.asString())
+                                        add("    ${module.qualifiedName!!.asString()},\n")
                                     }
 
                                     add(")")
