@@ -38,7 +38,7 @@ internal data class ObjectCreator(
                         .apply {
                             add("listOf(\n")
 
-                            add(lines.joinToString(",\n", prefix = "    "))
+                            add(lines.joinToString(",\n", postfix = "\n", transform = {"    $it"}))
 
                             add(")")
                         }.build()
