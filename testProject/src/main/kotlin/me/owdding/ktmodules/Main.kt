@@ -1,6 +1,7 @@
 package me.owdding.ktmodules
 
 import me.owdding.ktmodules.generated.TestProjectModules
+import me.owdding.ktmodules.generated.TestProjectTests
 
 @Module
 object Main {
@@ -15,6 +16,7 @@ object Main {
         } else {
             println(":D")
         }
+        TestProjectTests.init { println(it) }
     }
 
 }
