@@ -7,4 +7,8 @@ object Test {
 
     }
 
+    @TestAnnotation
+    fun test() {
+
+    }
 }
