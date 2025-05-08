@@ -1,7 +1,10 @@
 package me.owdding.ktmodules
 
 @Module
-object TestModule {
+object TestModule : TestInterface {
+    override fun silly() {
+
+    }
 
     init {
         Main.worked = true

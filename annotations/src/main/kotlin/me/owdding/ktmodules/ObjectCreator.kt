@@ -29,11 +29,7 @@ internal data class ObjectCreator(
         return TypeSpec.objectBuilder("${context.projectName}$name").apply {
             this.addModifiers(KModifier.INTERNAL)
             this.addProperty(
-                PropertySpec.builder(
-                    "modules",
-                    List::class.asClassName().parameterizedBy(Any::class.asClassName()),
-                    KModifier.PRIVATE
-                ).initializer(
+                PropertySpec.builder("collected").initializer(
                     CodeBlock.builder()
                         .apply {
                             add("listOf(\n")
@@ -53,7 +49,7 @@ internal data class ObjectCreator(
                             returnType = Unit::class.asTypeName()
                         )
                     )
-                    .addStatement("modules.forEach(applicator)")
+                    .addStatement("collected.forEach(applicator)")
                     .build()
             )
         }.build()
