@@ -8,6 +8,7 @@ plugins {
 }
 
 repositories {
+    maven(url = "https://maven.teamresourceful.com/repository/maven-public/")
     mavenCentral()
 }
 
