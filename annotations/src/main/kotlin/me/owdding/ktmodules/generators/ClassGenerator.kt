@@ -4,6 +4,7 @@ import com.google.devtools.ksp.getConstructors
 import com.google.devtools.ksp.symbol.ClassKind
 import com.google.devtools.ksp.symbol.KSAnnotated
 import com.google.devtools.ksp.symbol.KSClassDeclaration
+import me.owdding.ktmodules.generators.Generators.escapeQualifiedName
 
 internal object ClassGenerator : Generator {
 
@@ -14,6 +15,6 @@ internal object ClassGenerator : Generator {
         return annotated.getConstructors().any { it.parameters.filterNot { it.hasDefault }.isEmpty() }
     }
 
-    override fun emit(annotated: KSAnnotated) = "${(annotated as KSClassDeclaration).qualifiedName!!.asString()}()"
+    override fun emit(annotated: KSAnnotated) = "${(annotated as KSClassDeclaration).escapeQualifiedName()}()"
 
 }

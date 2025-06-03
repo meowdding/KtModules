@@ -5,6 +5,7 @@ import com.google.devtools.ksp.symbol.ClassKind
 import com.google.devtools.ksp.symbol.KSAnnotated
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSPropertyDeclaration
+import me.owdding.ktmodules.generators.Generators.escapeQualifiedName
 
 internal object VariableGenerator : Generator {
 
@@ -16,7 +17,7 @@ internal object VariableGenerator : Generator {
     }
 
     override fun emit(annotated: KSAnnotated): String {
-        return (annotated as KSPropertyDeclaration).qualifiedName!!.asString()
+        return (annotated as KSPropertyDeclaration).escapeQualifiedName()
     }
 
 }
