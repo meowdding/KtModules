@@ -2,7 +2,7 @@ package me.owdding.ktmodules.generators
 
 import com.google.devtools.ksp.symbol.KSAnnotated
 import com.google.devtools.ksp.symbol.KSDeclaration
-import com.squareup.kotlinpoet.escapeSegmentsIfNecessary
+import me.owdding.kotlinpoet.escapeSegmentsIfNecessary
 
 internal object Generators {
     

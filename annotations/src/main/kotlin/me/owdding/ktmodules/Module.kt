@@ -4,8 +4,8 @@ import com.google.devtools.ksp.KspExperimental
 import com.google.devtools.ksp.processing.*
 import com.google.devtools.ksp.symbol.KSAnnotated
 import com.google.devtools.ksp.symbol.KSClassDeclaration
-import com.squareup.kotlinpoet.FileSpec
-import com.squareup.kotlinpoet.ksp.writeTo
+import me.owdding.kotlinpoet.FileSpec
+import me.owdding.kotlinpoet.ksp.writeTo
 import me.owdding.ktmodules.generators.Generators
 
 internal class Processor(

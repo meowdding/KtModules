@@ -5,7 +5,7 @@ import com.google.devtools.ksp.symbol.ClassKind
 import com.google.devtools.ksp.symbol.KSAnnotated
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
-import com.squareup.kotlinpoet.escapeSegmentsIfNecessary
+import me.owdding.kotlinpoet.escapeSegmentsIfNecessary
 import me.owdding.ktmodules.generators.Generators.escapeQualifier
 
 internal object FunctionGenerator : Generator {
