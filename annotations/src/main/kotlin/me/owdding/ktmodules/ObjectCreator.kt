@@ -31,6 +31,11 @@ internal data class ObjectCreator(
                 PropertySpec.builder("collected").initializer(
                     CodeBlock.builder()
                         .apply {
+                            if (lines.isEmpty()) {
+                                add("emptyList<Any>()")
+                                return@apply
+                            }
+
                             add("listOf(\n")
 
                             add(lines.joinToString(",\n", postfix = "\n", transform = {"    $it"}))
