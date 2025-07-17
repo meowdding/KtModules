@@ -1,3 +1,4 @@
+import groovy.util.Node
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.plugin.KotlinApiPlugin
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -67,6 +68,25 @@ publishing {
             version = project.version.toString() + suffix
 
             pom {
+                withXml {
+                    val root = asNode()
+                    val dependencies = root.appendNode("dependencies")
+
+                    root.children()
+                        .filterIsInstance<Node>()
+                        .filter { "dependencies" == it.name() || "dependencyManagement" == it.name() }
+                        .forEach { root.remove(it) }
+
+                    fun addDependency(group: String, artifact: String, version: String) {
+                        val dependency = dependencies.appendNode("dependency")
+                        dependency.appendNode("groupId", group)
+                        dependency.appendNode("artifactId", artifact)
+                        dependency.appendNode("version", version)
+                    }
+
+                    addDependency("me.owdding.kotlinpoet", "kotlinpoet-jvm", "1.0.1")
+                    addDependency("me.owdding.kotlinpoet", "ksp", "1.0.1")
+                }
                 this.name.set("KtModules")
                 url.set("https://github.com/meowdding/ktmodules")
 
