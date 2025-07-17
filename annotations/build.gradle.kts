@@ -68,14 +68,24 @@ publishing {
             version = project.version.toString() + suffix
 
             pom {
+                this.name.set("KtModules")
+                url.set("https://github.com/meowdding/ktmodules")
+
+                scm {
+                    connection.set("git:https://github.com/meowdding/ktmodules.git")
+                    developerConnection.set("git:https://github.com/meowdding/ktmodules.git")
+                    url.set("https://github.com/meowdding/ktmodules")
+                }
+
                 withXml {
                     val root = asNode()
-                    val dependencies = root.appendNode("dependencies")
 
                     root.children()
                         .filterIsInstance<Node>()
                         .filter { "dependencies" == it.name() || "dependencyManagement" == it.name() }
                         .forEach { root.remove(it) }
+
+                    val dependencies = root.appendNode("dependencies")
 
                     fun addDependency(group: String, artifact: String, version: String) {
                         val dependency = dependencies.appendNode("dependency")
@@ -86,14 +96,6 @@ publishing {
 
                     addDependency("me.owdding.kotlinpoet", "kotlinpoet-jvm", "1.0.1")
                     addDependency("me.owdding.kotlinpoet", "ksp", "1.0.1")
-                }
-                this.name.set("KtModules")
-                url.set("https://github.com/meowdding/ktmodules")
-
-                scm {
-                    connection.set("git:https://github.com/meowdding/ktmodules.git")
-                    developerConnection.set("git:https://github.com/meowdding/ktmodules.git")
-                    url.set("https://github.com/meowdding/ktmodules")
                 }
             }
         }
