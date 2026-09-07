@@ -7,4 +7,4 @@ annotation class Module
 
 @Retention(AnnotationRetention.SOURCE)
 @Target(AnnotationTarget.ANNOTATION_CLASS)
-annotation class AutoCollect(val nameOverride: String = "")
+annotation class AutoCollect(val nameOverride: String = "", val prefixProjectName: Boolean = true)

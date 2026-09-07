@@ -13,19 +13,19 @@ internal data class ObjectCreator(
 ) {
     @OptIn(KspExperimental::class)
     fun create(): TypeSpec {
+        val (moduleName, projectName) = if (annotation.isAnnotationPresent(AutoCollect::class)) {
+            val annotation = annotation.getAnnotationsByType(AutoCollect::class).first()
+            annotation.nameOverride to annotation.prefixProjectName
+        } else {
+            "" to true
+        }
 
-        val name = (
-                if (annotation.isAnnotationPresent(AutoCollect::class)) {
-                    annotation.getAnnotationsByType(AutoCollect::class).first().nameOverride
-                } else {
-                    ""
-                }
-                ).takeUnless { it.isEmpty() }
+        val name = moduleName.takeUnless { it.isEmpty() }
             ?: if (annotation.qualifiedName!!.asString() == Module::class.qualifiedName!!) {
                 "Modules"
             } else annotation.simpleName.asString()
 
-        return TypeSpec.objectBuilder("${context.projectName}$name").apply {
+        return TypeSpec.objectBuilder("${if (projectName) context.projectName else ""}$name").apply {
             this.addModifiers(KModifier.INTERNAL)
             this.addProperty(
                 PropertySpec.builder("collected").initializer(
